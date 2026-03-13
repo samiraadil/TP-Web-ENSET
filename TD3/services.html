@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Destinations | Sam’s SKYWAYS</title>
+    <style>
+        :root { --gold: #c5a059; --dark: #02060c; --white: #f0f4f8; }
+        body { background: var(--dark); color: var(--white); font-family: 'Segoe UI', sans-serif; margin: 0; }
+        nav { display: flex; justify-content: space-around; padding: 25px; background: #000; border-bottom: 1px solid var(--gold); }
+        nav a { color: white; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
+        .container { padding: 60px 10%; }
+        h1 { color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
+        
+        /* Utilisation de details/summary pour la liste des destinations (Exigence TP) */
+        details { background: #050a14; border: 1px solid #222; margin-bottom: 10px; padding: 15px; }
+        summary { color: var(--gold); font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        ul { list-style: none; padding-left: 10px; color: #ccc; }
+        li { margin: 10px 0; border-left: 2px solid var(--gold); padding-left: 15px; }
+
+        /* Tableau complexe avec fusions (Exigence TP) */
+        table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        th, td { border: 1px solid #333; padding: 15px; text-align: center; }
+        th { color: var(--gold); background: #0a0a0a; }
+        footer { padding: 30px; text-align: center; border-top: 1px solid #222; font-size: 0.8rem; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Accueil</a> <a href="about.html">Direction</a> <a href="services.html">Destinations</a> <a href="gallery.html">Flotte</a> <a href="contact.html">Contact</a>
+    </nav>
+    <div class="container">
+        <h1>Nos Hubs Internationaux</h1>
+        
+        <details open>
+            <summary>Europe & Méditerranée</summary>
+            <ul>
+                <li><strong>Paris Le Bourget (LFPB)</strong> - France</li>
+                <li><strong>Nice Côte d'Azur (LFMN)</strong> - France</li>
+                <li><strong>Genève (LSGG)</strong> - Suisse</li>
+                <li><strong>Marrakech Ménara (GMMX)</strong> - Maroc</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary>Amériques</summary>
+            <ul>
+                <li><strong>New York Teterboro (KTEB)</strong> - USA</li>
+                <li><strong>Miami Opa-Locka (KOPF)</strong> - USA</li>
+                <li><strong>Los Angeles Van Nuys (KVNY)</strong> - USA</li>
+                <li><strong>São Paulo Guarulhos (SBGR)</strong> - Brésil</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary>Moyen-Orient & Asie</summary>
+            <ul>
+                <li><strong>Dubaï Al Maktoum (OMDW)</strong> - Émirats Arabes Unis</li>
+                <li><strong>Riyad (OERK)</strong> - Arabie Saoudite</li>
+                <li><strong>Hong Kong (VHHH)</strong> - Chine</li>
+                <li><strong>Singapour Seletar (WSSL)</strong> - Singapour</li>
+            </ul>
+        </details>
+
+        <table>
+            <tr>
+                <th>Service</th>
+                <th>Jet Continental</th>
+                <th>Global Ultra-Luxe</th>
+            </tr>
+            <tr>
+                <td>Personnel de bord</td>
+                <td colspan="2">Équipage VIP (2 Pilotes + 1 Concierge de bord)</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Capacité de vol</td>
+                <td>Vols Régionaux</td>
+                <td>Vols Transcontinentaux</td>
+            </tr>
+            <tr>
+                <td>Jusqu'à 5 heures</td>
+                <td>Jusqu'à 14 heures</td>
+            </tr>
+        </table>
+    </div>
+    <footer>© 2026 Sam’s SKYWAYS | Samira ADIL</footer>
+</body>
+</html>

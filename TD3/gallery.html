@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez la flotte exclusive de Sam’s SKYWAYS.">
+    <meta property="og:title" content="La Flotte | Sam’s SKYWAYS">
+    <meta property="og:type" content="website">
+    <title>La Flotte | Sam’s SKYWAYS</title>
+    <style>
+        :root { --gold: #c5a059; --dark: #02060c; --white: #f0f4f8; }
+        body { background: var(--dark); color: var(--white); font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; }
+        
+        /* Navigation cohérente sur toutes les pages */
+        nav { display: flex; justify-content: space-around; padding: 25px; background: #000; border-bottom: 1px solid var(--gold); }
+        nav a { color: white; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        nav a:hover { color: var(--gold); }
+
+        .container { padding: 60px 5%; }
+        h1 { font-size: 2.5rem; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 50px; }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .plane-card { background: #050a14; border: 1px solid #222; padding: 15px; border-radius: 5px; transition: 0.3s; }
+        .plane-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        
+        /* Style des images responsives */
+        .plane-card img { width: 100%; height: 250px; object-fit: cover; border-bottom: 2px solid var(--gold); }
+        
+        h3 { color: var(--gold); margin-top: 20px; letter-spacing: 2px; }
+        p { color: #aaa; font-size: 0.9rem; line-height: 1.5; padding: 10px; }
+
+        footer { padding: 40px; background: #000; border-top: 1px solid #222; font-size: 0.8rem; color: #666; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="about.html">Direction</a>
+        <a href="services.html">Destinations</a>
+        <a href="gallery.html">Flotte</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h1>NOTRE FLOTTE D'EXCEPTION</h1>
+
+        <div class="gallery-grid">
+            <div class="plane-card">
+                <picture>
+                    <source srcset="https://images.aircharterservice.com/global/aircraft-guide/private-charter/gulfstream-g650.jpg" media="(min-width: 800px)">
+                    <img src="https://images.aircharterservice.com/global/aircraft-guide/private-charter/gulfstream-g650.jpg" alt="Gulfstream G650">
+                </picture>
+                <h3>GULFSTREAM G650</h3>
+                <p>Le fleuron de l'aviation d'affaires mondiale, offrant performance et luxe sans compromis.</p>
+            </div>
+
+            <div class="plane-card">
+                <picture>
+                    <source srcset="https://bombardier.com/sites/default/files/styles/preowned_header_m/public/2025-08/Bombardier_-16_More_2.jpg.webp?itok=OVSuN9DG" media="(min-width: 800px)">
+                    <img src="https://bombardier.com/sites/default/files/styles/preowned_header_m/public/2025-08/Bombardier_-16_More_2.jpg.webp?itok=OVSuN9DG" alt="Bombardier Global 7500">
+                </picture>
+                <h3>BOMBARDIER GLOBAL 7500</h3>
+                <p>Le jet privé le plus spacieux au monde, offrant une autonomie inégalée pour un confort absolu.</p>
+            </div>
+
+            <div class="plane-card">
+                <picture>
+                    <source srcset="https://i0.wp.com/www.aerobuzz.fr/wp-content/uploads/2025/11/falcon-8x-antarctica-flight.jpeg?fit=800%2C440&ssl=1" media="(min-width: 800px)">
+                    <img src="https://i0.wp.com/www.aerobuzz.fr/wp-content/uploads/2025/11/falcon-8x-antarctica-flight.jpeg?fit=800%2C440&ssl=1" alt="Dassault Falcon 8X">
+                </picture>
+                <h3>DASSAULT FALCON 8X</h3>
+                <p>L'expertise aéronautique au service de la sérénité en cabine. La technologie française raffinée.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Sam’s SKYWAYS | Fondatrice : Samira ADIL</p>
+        <p><a href="index.html" style="color:var(--gold)">Plan du site</a> | Mentions Légales</p>
+    </footer>
+
+</body>
+</html>

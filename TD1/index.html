@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Samira ADIL</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background-color: #f4f7f6; }
+        header { background: #2c3e50; color: white; padding: 2rem 1rem; text-align: center; }
+        nav { background: #34495e; padding: 10px; text-align: center; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        nav a:hover { color: #3498db; }
+        main { padding: 20px; max-width: 900px; margin: 20px auto; background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        section { margin-bottom: 40px; padding-bottom: 10px; }
+        h2 { color: #2c3e50; border-bottom: 3px solid #3498db; display: inline-block; margin-bottom: 20px; }
+        .profile-container { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .profile-img { border-radius: 50%; width: 150px; height: 150px; object-fit: cover; border: 4px solid #3498db; background-color: #eee; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+        table, th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #3498db; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .contact-link { color: #3498db; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portfolio de Samira ADIL</h1>
+        <p>Étudiante en 1ère année - ENSET Mohammedia</p>
+    </header>
+
+    <nav>
+        <a href="#propos">À propos</a>
+        <a href="#formations">Formations</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+        <section id="propos">
+            <h2>À propos de moi</h2>
+            <div class="profile-container">
+                <img src="ma-photo.jpg" alt="Photo de Samira ADIL" class="profile-img">
+                <div>
+                    <p>Bonjour ! Je m'appelle <strong>Samira ADIL</strong>.</p>
+                    <p>Actuellement étudiante en première année à l'<strong>ENSET</strong> au sein de la filière <strong>GLSID</strong> (Génie Logiciel et Systèmes d'Information Distribués). Passionnée par l'informatique, je construis mon parcours avec rigueur depuis mes classes préparatoires.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="formations">
+            <h2>Parcours Académique</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Période</th>
+                        <th>Formation / Diplôme</th>
+                        <th>Établissement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025 - Présent</td>
+                        <td>Étudiante en 1ère année (GLSID)</td>
+                        <td>ENSET Mohammedia</td>
+                    </tr>
+                    <tr>
+                        <td>2023 - 2025</td>
+                        <td>Classes Préparatoires (Filière MP)</td>
+                        <td>Groupe Scolaire La Résidence</td>
+                    </tr>
+                    <tr>
+                        <td>2023</td>
+                        <td>Baccalauréat Sciences Mathématiques</td>
+                        <td>Groupe Scolaire La Résidence</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="contact">
+            <h2>Me Contacter</h2>
+            <p>Email professionnel : <a href="mailto:samiraadil2006@gmail.com" class="contact-link">samiraadil2006@gmail.com</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Samira ADIL - Travaux Pratiques ENSET</p>
+    </footer>
+
+</body>
+</html>
+

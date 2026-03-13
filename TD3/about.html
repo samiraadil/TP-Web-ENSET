@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="L'équipe dirigeante de Sam’s SKYWAYS.">
+    <meta property="og:title" content="Direction | Sam’s SKYWAYS">
+    <title>Direction | Sam’s SKYWAYS</title>
+    <style>
+        :root { --gold: #c5a059; --dark: #02060c; --white: #f0f4f8; }
+        body { background: var(--dark); color: var(--white); font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; }
+        
+        nav { display: flex; justify-content: space-around; padding: 25px; background: #000; border-bottom: 1px solid var(--gold); }
+        nav a { color: white; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
+
+        .container { padding: 80px 10%; }
+        h1 { color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 60px; }
+
+        /* Structure Figure/Figcaption sans photo (Exigence TP) */
+        .team-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 40px; 
+            max-width: 600px; 
+            margin: 0 auto 80px; 
+        }
+        
+        figure { 
+            margin: 0; 
+            padding: 20px; 
+            border-bottom: 1px solid #222; 
+            transition: 0.3s;
+        }
+        
+        figure:hover { border-color: var(--gold); background: rgba(197, 160, 89, 0.05); }
+
+        figcaption { display: flex; flex-direction: column; align-items: center; }
+        
+        .name { 
+            color: var(--gold); 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-size: 1.5rem; 
+        }
+        
+        .role { 
+            font-size: 0.9rem; 
+            color: #888; 
+            margin-top: 5px; 
+            text-transform: italic;
+        }
+
+        /* Vidéo de présentation (Exigence TP: autoplay, muted, loop) */
+        .video-container { 
+            margin-top: 50px; 
+            border: 1px solid var(--gold); 
+            line-height: 0;
+        }
+        video { width: 100%; max-width: 1000px; }
+
+        footer { padding: 40px; border-top: 1px solid #222; font-size: 0.8rem; color: #666; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="about.html">Direction</a>
+        <a href="services.html">Destinations</a>
+        <a href="gallery.html">Flotte</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h1>GOUVERNANCE EXÉCUTIVE</h1>
+
+        <div class="team-list">
+            <figure>
+                <figcaption>
+                    <span class="name">Samira ADIL</span>
+                    <span class="role">Fondatrice & Présidente Directrice Générale</span>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <figcaption>
+                    <span class="name">Hiba NAITOUALI</span>
+                    <span class="role">Directrice des Opérations Aériennes</span>
+                </figcaption>
+            </figure>
+
+            <figure>
+                <figcaption>
+                    <span class="name">Samia BOUAB</span>
+                    <span class="role">Directrice de l'Expérience Client & Luxe</span>
+                </figcaption>
+            </figure>
+        </div>
+
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-over-a-sea-of-clouds-at-sunset-10332-large.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Sam’s SKYWAYS | Fondatrice : Samira ADIL</p>
+        <p><a href="index.html" style="color:var(--gold)">Plan du site</a> | Mentions Légales</p>
+    </footer>
+
+</body>
+</html>

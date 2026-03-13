@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription Complète - Samira ADIL</title>
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh; margin: 0; padding: 20px;
+        }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        .form-card { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 30px; border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+            width: 100%; max-width: 600px;
+        }
+        h2 { text-align: center; color: #2c3e50; text-transform: uppercase; letter-spacing: 2px; }
+        fieldset { border: 2px solid #f0f2f5; border-radius: 12px; padding: 15px; margin-bottom: 20px; }
+        legend { font-weight: bold; color: #e73c7e; padding: 0 10px; font-size: 13px; }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #444; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 10px; border: 2px solid #eee; border-radius: 8px; box-sizing: border-box; outline: none; }
+        input:focus, textarea:focus { border-color: #23a6d5; }
+
+        .flex-row { display: flex; gap: 15px; flex-wrap: wrap; background: #f9f9f9; padding: 10px; border-radius: 8px; }
+        .checkbox-group { display: flex; align-items: center; gap: 5px; font-size: 13px; }
+        input[type="checkbox"], input[type="radio"] { width: auto; }
+        
+        button { 
+            width: 100%; padding: 15px; background: linear-gradient(to right, #23a6d5, #23d5ab); 
+            color: white; border: none; border-radius: 10px; cursor: pointer; 
+            font-size: 18px; font-weight: bold; transition: 0.3s;
+        }
+        button:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+    <h2>Formulaire d'Inscription</h2>
+    <form action="#" method="POST">
+        
+        <fieldset>
+            <legend>INFORMATIONS PERSONNELLES</legend>
+            <div class="grid">
+                <div class="group">
+                    <label for="nom">Nom *</label>
+                    <input type="text" id="nom" name="nom" required placeholder="ADIL">
+                </div>
+                <div class="group">
+                    <label for="prenom">Prénom *</label>
+                    <input type="text" id="prenom" name="prenom" required placeholder="Samira">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="exemple@mail.com">
+                </div>
+                <div class="group">
+                    <label for="tel">Téléphone *</label>
+                    <input type="tel" id="tel" name="tel" pattern="0[5-7][0-9]{8}" required placeholder="06XXXXXXXX">
+                </div>
+            </div>
+            <div class="group">
+                <label for="birth">Date de naissance *</label>
+                <input type="date" id="birth" name="birth" required>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>SÉCURITÉ</legend>
+            <div class="grid">
+                <div class="group">
+                    <label for="pass">Mot de passe *</label>
+                    <input type="password" id="pass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required placeholder="8+ car, 1 Maj, 1 Chiffre">
+                </div>
+                <div class="group">
+                    <label for="conf-pass">Confirmation *</label>
+                    <input type="password" id="conf-pass" name="conf-pass" required placeholder="Répéter le mot de passe">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>DÉTAILS DU PROFIL</legend>
+            <div class="group">
+                <label for="pays">Pays de résidence (Select + Datalist)</label>
+                <input list="liste-pays" id="pays" name="pays" placeholder="Tapez ou choisissez...">
+                <datalist id="liste-pays">
+                    <option value="Maroc"><option value="France"><option value="Sénégal"><option value="Canada">
+                </datalist>
+            </div>
+            <div class="group">
+                <label>Genre :</label>
+                <div class="flex-row">
+                    <input type="radio" id="f" name="genre" value="F" required> <label for="f">Femme</label>
+                    <input type="radio" id="h" name="genre" value="H"> <label for="h">Homme</label>
+                </div>
+            </div>
+            <div class="group">
+                <label>Centres d'intérêt :</label>
+                <div class="flex-row">
+                    <div class="checkbox-group"><input type="checkbox" id="c1" name="interest" value="web"><label for="c1">Web</label></div>
+                    <div class="checkbox-group"><input type="checkbox" id="c2" name="interest" value="ai"><label for="c2">IA</label></div>
+                    <div class="checkbox-group"><input type="checkbox" id="c3" name="interest" value="design"><label for="c3">Design</label></div>
+                </div>
+            </div>
+            <div class="group">
+                <label for="bio">Biographie (max 200 car.)</label>
+                <textarea id="bio" name="bio" maxlength="200" rows="3" placeholder="Parlez-nous de vous..."></textarea>
+            </div>
+            <div class="group">
+                <label for="photo">Photo de profil (Upload)</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
+            </div>
+        </fieldset>
+
+        <div class="group" style="display:flex; align-items: center; gap: 10px;">
+            <input type="checkbox" id="cgu" name="cgu" required style="width:auto;">
+            <label for="cgu" style="font-size: 12px;">J'accepte les CGU *</label>
+        </div>
+
+        <button type="submit">VALIDER L'INSCRIPTION</button>
+    </form>
+</div>
+
+</body>
+</html>
