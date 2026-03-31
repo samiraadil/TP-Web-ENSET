@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP Web - Design Orchidée & Violet</title>
+  <style>
+    /* --- CONFIGURATION DES VARIABLES (EXERCICE 6) --- */
+    :root {
+      --primary-color: #ff007a; /* Rose Orchidée */
+      --secondary-color: #2d3436;
+      --bg-color: #fcfaff;
+      --text-color: #2d3436;
+      --card-bg: #ffffff;
+      --accent-gradient: linear-gradient(135deg, #ff007a 0%, #6c5ce7 100%);
+    }
+
+    /* Thème Sombre */
+    body.dark-theme {
+      --bg-color: #120f1a;
+      --text-color: #f1f1f1;
+      --card-bg: #1e1b26;
+      --secondary-color: #ff007a;
+    }
+
+    /* --- BASE & RESET (EXERCICE 2.1 Q3) --- */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      transition: all 0.4s ease;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    h1 { 
+      text-align: center; 
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    h2 { 
+      color: var(--primary-color); 
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    h2::before {
+      content: '⚡';
+      margin-right: 10px;
+    }
+    
+    .exo-section {
+      background: var(--card-bg);
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255, 0, 122, 0.05);
+    }
+
+    code { background: rgba(255, 0, 122, 0.1); padding: 2px 5px; border-radius: 4px; color: #ff007a; font-family: monospace; }
+    .ans { color: #6c5ce7; font-weight: bold; }
+
+    /* --- EXERCICE 3 : FLEXBOX --- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--accent-gradient);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+    }
+    .nav-links { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; }
+    .nav-links a { color: white; text-decoration: none; font-weight: 500; }
+
+    .cards-container { display: flex; gap: 20px; margin-top: 20px; }
+    .card { 
+      flex: 1; background: var(--bg-color); padding: 20px; border-radius: 12px; color: var(--text-color);
+      display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.05);
+    }
+    .card-link { 
+      margin-top: auto; background: var(--primary-color); color: white; 
+      text-align: center; padding: 10px; text-decoration: none; border-radius: 8px; 
+      transition: 0.3s;
+    }
+    .card-link:hover { opacity: 0.8; transform: translateY(-2px); }
+
+    /* --- EXERCICE 4 : GRID --- */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+    .grid-item { background: var(--primary-color); color: white; padding: 20px; text-align: center; border-radius: 10px; font-weight: bold; }
+
+    .page-layout {
+      display: grid;
+      grid-template-areas: "header header" "sidebar main" "footer footer";
+      grid-template-columns: 180px 1fr;
+      grid-template-rows: auto 1fr auto;
+      gap: 10px;
+      height: 250px;
+      margin-top: 20px;
+    }
+    .header-area { grid-area: header; background: #6c5ce7; color: white; text-align: center; padding: 10px; border-radius: 5px; }
+    .sidebar-area { grid-area: sidebar; background: #fab1a0; color: #2d3436; padding: 10px; border-radius: 5px; }
+    .main-area { grid-area: main; background: #dfe6e9; color: #333; padding: 10px; border-radius: 5px; }
+    .footer-area { grid-area: footer; background: #2d3436; color: white; text-align: center; padding: 10px; border-radius: 5px; }
+
+    /* --- EXERCICE 5 : RESPONSIVE --- */
+    .res-container { width: 100%; padding: 20px; border: 2px dashed #ff007a; border-radius: 10px; }
+    .res-nav { display: flex; flex-direction: column; gap: 8px; background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; }
+    .res-sidebar { display: none; }
+    .res-content { display: block; margin-top: 15px; }
+
+    @media (min-width: 768px) {
+      .res-nav { flex-direction: row; justify-content: space-around; }
+      .res-content { display: flex; gap: 25px; }
+      .res-sidebar { display: block; width: 200px; background: rgba(108, 92, 231, 0.1); padding: 15px; border-radius: 8px; }
+    }
+
+    /* --- EXERCICE 6 : THEME BTN --- */
+    .btn-theme {
+      padding: 12px 25px;
+      background: var(--accent-gradient);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(255, 0, 122, 0.3);
+      transition: 0.3s;
+    }
+    .btn-theme:hover { transform: scale(1.05); }
+
+    /* --- EXERCICE 7 : ANIMATIONS --- */
+    .btn-animated {
+      padding: 12px 30px;
+      background: #2d3436;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .btn-animated:hover { transform: scale(1.1) rotate(2deg); background: #ff007a; }
+
+    .loader {
+      width: 50px; height: 50px;
+      border: 5px solid rgba(255, 0, 122, 0.1);
+      border-top: 5px solid #ff007a;
+      border-radius: 50%;
+      animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+      margin: 20px auto;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Correction du TP Web</h1>
+
+  <section class="exo-section">
+    <h2>Exercice 1 : Sélecteurs et spécificité</h2>
+    <p><strong>1.1 Sélecteurs :</strong></p>
+    <ul>
+      <li>Tous les liens : <code>.main-nav a</code></li>
+      <li>Lien actif : <code>a.active</code></li>
+      <li>Article featured : <code>article.featured</code></li>
+      <li>Premier paragraphe : <code>article p:first-of-type</code></li>
+      <li>Éléments pairs : <code>li:nth-child(even)</code></li>
+    </ul>
+    <p><strong>1.2 Spécificité :</strong></p>
+    <p>Ordre croissant : <span class="ans">p < .text < p.text < #main < #main .text p</span></p>
+  </section>
+
+  <section class="exo-section">
+    <h2>Exercice 2 : Box Model</h2>
+    <p>1. Largeur visible (content-box) : <span class="ans">350px</span> (300 + 40 padding + 10 bordure)</p>
+    <p>2. Largeur visible (border-box) : <span class="ans">300px</span></p>
+    <p>3. Reset CSS : <code>* { box-sizing: border-box; }</code></p>
+  </section>
+
+  <section class="exo-section">
+    <h2>Exercice 3 : Flexbox</h2>
+    <nav class="navbar">
+      <div class="logo">✨ SamiraDev</div>
+      <ul class="nav-links">
+        <li><a href="#">Accueil</a></li><li><a href="#">Projets</a></li><li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="cards-container">
+      <div class="card"><h3>Projet A</h3><p>Contenu court.</p><a href="#" class="card-link">Détails</a></div>
+      <div class="card"><h3>Projet B</h3><p>Une carte plus longue pour tester l'alignement vertical flexbox.</p><a href="#" class="card-link">Détails</a></div>
+    </div>
+  </section>
+
+  <section class="exo-section">
+    <h2>Exercice 4 : CSS Grid</h2>
+    <div class="grid-cards">
+      <div class="grid-item">01</div><div class="grid-item">02</div><div class="grid-item">03</div><div class="grid-item">04</div>
+    </div>
+    <div class="page-layout">
+      <header class="header-area">HEADER</header>
+      <nav class="sidebar-area">SIDEBAR</nav>
+      <main class="main-area">CONTENU</main>
+      <footer class="footer-area">FOOTER</footer>
+    </div>
+  </section>
+
+  <section class="exo-section">
+    <h2>Exercice 5 : Responsive Design</h2>
+    <div class="res-container">
+      <nav class="res-nav">
+        <span>Link 1</span><span>Link 2</span><span>Link 3</span>
+      </nav>
+      <div class="res-content">
+        <aside class="res-sidebar">SIDEBAR</aside>
+        <main>Contenu principal (Redimensionnez la fenêtre pour tester !)</main>
+      </div>
+    </div>
+  </section>
+
+  <section class="exo-section" style="text-align: center;">
+    <h2>Exercice 6 : Variables CSS & Thème</h2>
+    <p>Cliquez ci-dessous pour tester le basculement dynamique du thème.</p>
+    <button class="btn-theme" onclick="document.body.classList.toggle('dark-theme')">
+      Changer le Thème
+    </button>
+  </section>
+
+  <section class="exo-section" style="text-align: center;">
+    <h2>Exercice 7 : Transitions et animations</h2>
+    <p>Bouton avec effet d'échelle et rotation au survol :</p>
+    <button class="btn-animated">Survolez-moi !</button>
+    <div class="loader"></div>
+  </section>
+
+  <section class="exo-section">
+    <h2>Exercice 8 : Quiz de Révision</h2>
+    <ol>
+      <li>Plus haute spécificité : <span class="ans">b) #header a</span></li>
+      <li>Largeur border-box : <span class="ans">b) 200px</span></li>
+      <li>Centrage Flexbox : <span class="ans">c) justify + align center</span></li>
+      <li>Valeur 1fr : <span class="ans">b) 1 fraction de l'espace disponible</span></li>
+      <li>Mobile First : <span class="ans">b) min-width</span></li>
+    </ol>
+  </section>
+
+</div>
+</body>
+</html>
+
