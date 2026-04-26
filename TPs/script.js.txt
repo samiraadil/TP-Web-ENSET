@@ -1,0 +1,63 @@
+// Initialisation du panier (récupère depuis le stockage local si disponible)
+let panier = JSON.parse(localStorage.getItem('panier')) || [];
+
+// Met à jour l'affichage au chargement
+majAffichage();
+
+// Écoute des clics sur les boutons "Ajouter"
+document.querySelectorAll('.btn-ajouter').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const produit = {
+            id: btn.getAttribute('data-id'),
+            nom: btn.getAttribute('data-nom'),
+            prix: parseFloat(btn.getAttribute('data-prix'))
+        };
+        ajouterAuPanier(produit);
+    });
+});
+
+function ajouterAuPanier(produit) {
+    panier.push(produit);
+    localStorage.setItem('panier', JSON.stringify(panier));
+    majAffichage();
+}
+
+function majAffichage() {
+    const panierItems = document.getElementById('panier-items');
+    const totalPrix = document.getElementById('total-prix');
+    const countLabel = document.getElementById('panier-count');
+    
+    // Vider la liste actuelle
+    panierItems.innerHTML = '';
+    let total = 0;
+
+    if (panier.length === 0) {
+        panierItems.innerHTML = '<li class="list-group-item text-center">Votre panier est vide</li>';
+    } else {
+        panier.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.innerHTML = `
+                ${item.nom} - ${item.prix} €
+                <button class="btn btn-sm btn-danger" onclick="supprimerItem(${index})">X</button>
+            `;
+            panierItems.appendChild(li);
+            total += item.prix;
+        });
+    }
+
+    totalPrix.innerText = `${total} €`;
+    countLabel.innerText = panier.length;
+}
+
+function supprimerItem(index) {
+    panier.splice(index, 1);
+    localStorage.setItem('panier', JSON.stringify(panier));
+    majAffichage();
+}
+
+function viderPanier() {
+    panier = [];
+    localStorage.removeItem('panier');
+    majAffichage();
+}
