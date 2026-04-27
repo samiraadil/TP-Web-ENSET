@@ -17,37 +17,44 @@
     code { color: #e83e8c; font-weight: bold; }
     #response-area, #retry-log { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; min-height: 50px; white-space: pre-wrap; font-family: monospace; margin-top: 10px; }
     #retry-log { color: #ffca28; border: 1px solid #333; margin-bottom: 10px; }
-    .header-key { color: #9cdcfe; }
-    .header-val { color: #ce9178; }
+    .table-status { background-color: #f1f8ff; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>TP : Protocole HTTP - Support Complet (Énoncé & Corrigé)</h1>
+    <h1>TP : Protocole HTTP - Samira</h1>
 
     <h2>TP 1 : Exploration avec les DevTools</h2>
-    <h3>1.1 Observer une requête simple</h3>
-    <div class="answer">
-      <strong>Réponses :</strong><br>
-      • <strong>Status :</strong> <code>200 OK</code> (Succès).<br>
-      • <strong>Headers :</strong> Le <code>User-Agent</code> identifie mon navigateur, le <code>Host</code> indique le serveur visé.
+    <div class="instruction">
+      <p>Analyse des requêtes effectuées sur httpbin.org :</p>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-status mt-2">
+        <thead class="thead-dark">
+          <tr><th>URL</th><th>Méthode</th><th>Code</th><th>Content-Type</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>httpbin.org/get</td><td>GET</td><td>200 OK</td><td>application/json</td></tr>
+          <tr><td>httpbin.org/post</td><td>POST</td><td>200 OK</td><td>application/json</td></tr>
+          <tr><td>httpbin.org/status/201</td><td>GET</td><td>201 Created</td><td>text/plain</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <h2>TP 2 : Maîtrise de cURL</h2>
-    <pre># Voir uniquement les headers de réponse
+    <pre># Voir uniquement les headers de réponse (-i)
 curl -i https://httpbin.org/get
 
-# Mode verbeux (tous les échanges)
+# Mode verbeux complet (-v)
 curl -v https://httpbin.org/get</pre>
 
-    <h2>TP 3 : API REST & JavaScript (Exercice Pratique)</h2>
+    <h2>TP 3 : API REST & JavaScript (Retry)</h2>
     <div class="instruction">
-      <p><strong>Objectif :</strong> Tester la fonction <code>fetchWithRetry</code>. Utilisez l'URL ci-dessous pour simuler une erreur 500 et voir les tentatives.</p>
+      <p>Simulez une erreur serveur (500) pour tester la logique de tentative automatique :</p>
     </div>
-    
     <div class="p-3 border rounded bg-light">
-        <button class="btn btn-warning" onclick="testRetry()">Tester fetchWithRetry (Simuler Erreur 500)</button>
-        <div id="retry-log">Les logs de tentatives s'afficheront ici...</div>
+        <button class="btn btn-warning" onclick="testRetry()">Lancer fetchWithRetry (3 essais)</button>
+        <div id="retry-log">Logs de connexion...</div>
     </div>
 
     <h2>TP 4 : Analyse de Sécurité (Headers)</h2>
@@ -71,15 +78,15 @@ curl -v https://httpbin.org/get</pre>
           <tr><th>Fichier</th><th>Header suggéré</th><th>Raison</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>logo.png</code></td><td><code>max-age=31536000</code></td><td>Image statique (cache 1 an)</td></tr>
-          <tr><td><code>style.css</code></td><td><code>no-cache</code></td><td>Doit vérifier si une modif existe (ETag)</td></tr>
-          <tr><td><code>app.js</code></td><td><code>max-age=86400</code></td><td>Mise à jour quotidienne</td></tr>
+          <tr><td><code>logo.png</code></td><td><code>max-age=31536000</code></td><td>Cache long (1 an) pour images</td></tr>
+          <tr><td><code>style.css</code></td><td><code>no-cache</code></td><td>Doit vérifier si modif (ETag)</td></tr>
+          <tr><td><code>app.js</code></td><td><code>max-age=86400</code></td><td>Mise à jour journalière</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h2>Exercice Final : Client HTTP Dynamique</h2>
-    <div class="p-3 border rounded mb-4 shadow-sm">
+    <h2>Exercice Final : Client HTTP Interactif</h2>
+    <div class="p-3 border rounded mb-4 shadow-sm bg-light">
       <form id="http-form">
         <div class="form-group">
           <label>URL :</label>
@@ -93,16 +100,15 @@ curl -v https://httpbin.org/get</pre>
             </select>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Envoyer la requête</button>
+        <button type="submit" class="btn btn-primary btn-block">Exécuter la requête</button>
       </form>
-
-      <h3 class="mt-4">Résultat :</h3>
-      <div id="response-area">La réponse s'affichera ici...</div>
+      <h3 class="mt-4">Réponse du serveur :</h3>
+      <div id="response-area">En attente...</div>
     </div>
   </div>
 
   <script>
-    // --- LOGIQUE DU TP 3 : FETCH WITH RETRY ---
+    // --- LOGIQUE TP 3 : FETCH WITH RETRY ---
     async function fetchWithRetry(url, options, maxRetries) {
       const logArea = document.getElementById('retry-log');
       logArea.textContent = ""; 
@@ -119,10 +125,10 @@ curl -v https://httpbin.org/get</pre>
           return response;
         } catch (err) {
           if (i === maxRetries) {
-            logArea.textContent += `\nÉchec final : ${err.message}`;
+            logArea.textContent += `\nÉchec définitif : ${err.message}`;
             throw err;
           }
-          logArea.textContent += `Échouée (${err.message}). Nouvel essai dans 1s...\n`;
+          logArea.textContent += `Erreur serveur détectée. Nouvel essai dans 1s...\n`;
           await new Promise(res => setTimeout(res, 1000));
         }
       }
@@ -130,18 +136,17 @@ curl -v https://httpbin.org/get</pre>
 
     async function testRetry() {
         try {
-            // On appelle une URL qui renvoie une erreur 500 exprès
             await fetchWithRetry('https://httpbin.org/status/500', { method: 'GET' }, 3);
         } catch(e) {
-            console.log("Retry terminé avec erreur attendue.");
+            console.log("Fin du test retry.");
         }
     }
 
-    // --- LOGIQUE DU CLIENT HTTP FINAL ---
+    // --- LOGIQUE CLIENT HTTP ---
     document.getElementById('http-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const area = document.getElementById('response-area');
-      area.textContent = "Chargement...";
+      area.textContent = "Chargement en cours...";
       
       const method = document.getElementById('method').value;
       const url = document.getElementById('url').value;
@@ -153,9 +158,9 @@ curl -v https://httpbin.org/get</pre>
         let headersStr = "";
         res.headers.forEach((v, k) => headersStr += `${k}: ${v}\n`);
         
-        area.innerHTML = `<strong>Statut:</strong> ${res.status}\n\n<strong>Headers:</strong>\n${headersStr}\n<strong>Body:</strong>\n${JSON.stringify(data, null, 2)}`;
+        area.innerHTML = `<strong>Statut :</strong> ${res.status}\n\n<strong>Headers :</strong>\n${headersStr}\n<strong>Body :</strong>\n${JSON.stringify(data, null, 2)}`;
       } catch (err) {
-        area.textContent = "Erreur: " + err.message;
+        area.textContent = "Erreur : " + err.message;
       }
     });
   </script>
