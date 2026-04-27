@@ -3,122 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Correction TP - Le Protocole HTTP</title>
-  <meta name="author" content="Samira - CS Student" />
-  <link rel="shortcut icon" href="images/aziz_daaif.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css?family=Averia+Sans+Libre:300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
+  <title>TP Final : Protocole HTTP - Samira</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <style>
-    body {
-      font-family: "Averia Sans Libre", cursive, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      padding-top: 20px;
-      padding-bottom: 40px;
-    }
-    .correction-block {
-      background-color: #e9ecef;
-      border-left: 5px solid #007bff;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 0 5px 5px 0;
-    }
-    h1 { border-bottom: 3px solid #007bff; padding-bottom: 10px; color: #007bff; }
-    h2 { border-bottom: 1px solid #dee2e6; padding-bottom: 6px; margin-top: 30px; color: #343a40; }
-    code { background-color: #f1f1f1; padding: 2px 6px; border-radius: 3px; color: #e83e8c; }
-    pre { background: #2d2d2d; color: #ccc; padding: 15px; border-radius: 5px; }
-    .status-badge { font-weight: bold; padding: 3px 8px; border-radius: 4px; }
-    .s200 { background: #d4edda; color: #155724; }
-    .s404 { background: #f8d7da; color: #721c24; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f9; color: #333; line-height: 1.6; }
+    .container { background: white; padding: 40px; margin-top: 30px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    h1 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; }
+    h2 { color: #2c3e50; margin-top: 30px; border-left: 5px solid #0056b3; padding-left: 15px; }
+    h3 { color: #16a085; margin-top: 20px; }
+    .instruction { background-color: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 15px; }
+    .answer { background-color: #e8f4fd; border-left: 5px solid #2980b9; padding: 15px; margin: 15px 0; font-style: italic; }
+    code { background-color: #2d2d2d; color: #f8f8f2; padding: 2px 5px; border-radius: 4px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    .badge-status { font-weight: bold; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Chapitre 6 : Le Protocole HTTP - Travaux Pratiques (Corrigé)</h1>
+    <h1>TP : Le Protocole HTTP - Énoncé & Corrigé</h1>
 
     <h2>TP 1 : Exploration avec les DevTools</h2>
-    <p><strong>Objectif :</strong> Analyser les échanges client-serveur.</p>
     
-    <div class="correction-block">
-      <h4>Réponses aux Questions 1.2 :</h4>
-      <ul>
-        <li><strong>Code de statut :</strong> <code>200 OK</code>.</li>
-        <li><strong>Headers de requête :</strong> <code>Host</code>, <code>User-Agent</code>, <code>Accept</code>, <code>Accept-Language</code>.</li>
-        <li><strong>Content-Type de la réponse :</strong> <code>application/json</code>.</li>
-      </ul>
+    <h3>1.1 Ouvrir les DevTools</h3>
+    <div class="instruction">
+      <ol>
+        <li>Ouvrez Chrome ou Firefox</li>
+        <li>Appuyez sur <strong>F12</strong> ou <strong>Ctrl+Shift+I</strong></li>
+        <li>Allez dans l'onglet <strong>Network</strong> (Réseau)</li>
+      </ol>
     </div>
 
-    <div class="table-responsive">
-      <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-          <tr><th>URL</th><th>Méthode</th><th>Code</th><th>Content-Type (Réponse)</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>httpbin.org/get</td><td>GET</td><td><span class="status-badge s200">200</span></td><td>application/json</td></tr>
-          <tr><td>httpbin.org/post</td><td>POST</td><td><span class="status-badge s200">200</span></td><td>application/json</td></tr>
-          <tr><td>httpbin.org/status/201</td><td>GET</td><td><span class="status-badge s200">201</span></td><td>text/html</td></tr>
-        </tbody>
-      </table>
+    <h3>1.2 Observer une requête simple</h3>
+    <div class="instruction">
+      <ul>
+        <li>Cochez "Preserve log" pour garder l'historique</li>
+        <li>Naviguez vers <code>https://httpbin.org/get</code></li>
+        <li>Cliquez sur la requête dans la liste</li>
+      </ul>
+      <p><strong>Questions :</strong> Quel est le code de statut ? Quels headers de requête sont envoyés ? Quel est le Content-Type de la réponse ?</p>
+    </div>
+
+    <div class="answer">
+      <strong>Réponses :</strong>
+      <ul>
+        <li><strong>Code de statut :</strong> <code>200 OK</code> (Indique que la requête a réussi).</li>
+        <li><strong>Headers de requête :</strong> On y trouve <code>User-Agent</code>, <code>Accept</code>, <code>Host</code>, et <code>Accept-Encoding</code>.</li>
+        <li><strong>Content-Type :</strong> <code>application/json</code> (Le serveur renvoie des données au format JSON).</li>
+      </ul>
     </div>
 
     <h2>TP 2 : Maîtrise de cURL</h2>
     
-    <div class="correction-block">
-      <h4>Différence entre <code>-i</code> et <code>-v</code> :</h4>
-      <p>L'option <strong>-i</strong> affiche uniquement les en-têtes de la réponse. L'option <strong>-v</strong> (verbose) affiche tout le tunnel de communication (headers envoyés ET reçus, IP, handshake SSL).</p>
-      
-      <h4>Exercice Avancé :</h4>
-      <pre>curl -i -X POST \
-  -H "Content-Type: application/json" \
-  -H "X-Custom-Header: MonHeader" \
-  -d '{"action": "test", "value": 42}' \
-  https://httpbin.org/post</pre>
+    <h3>2.1 Requête GET simple</h3>
+    <pre>
+# Requête basique
+curl https://httpbin.org/get
+
+# Avec headers de réponse
+curl -i https://httpbin.org/get
+
+# Mode verbose (debug)
+curl -v https://httpbin.org/get</pre>
+
+    <div class="instruction">
+      <strong>Question :</strong> Quelle est la différence entre <code>-i</code> et <code>-v</code> ?
+    </div>
+    <div class="answer">
+      <strong>Réponse :</strong> 
+      L'option <code>-i</code> affiche uniquement les <strong>headers de la réponse</strong> avant le contenu. 
+      L'option <code>-v</code> (verbose) est un mode de debug qui affiche <strong>tout l'échange</strong> : la connexion IP, les headers que tu envoies (marqués par <code>></code>) et ceux que tu reçois (marqués par <code><</code>).
     </div>
 
+    <h3>Exercice avancé : Requête POST</h3>
+    <div class="instruction">
+      Écrivez une commande cURL qui envoie une requête POST à <code>https://httpbin.org/post</code> avec des headers spécifiques et un corps JSON.
+    </div>
+    <pre>
+curl -i -X POST \
+     -H "Content-Type: application/json" \
+     -H "X-Custom-Header: MonHeader" \
+     -d '{"action": "test", "value": 42}' \
+     https://httpbin.org/post</pre>
+
     <h2>TP 3 : API REST avec JavaScript</h2>
+
+    <h3>Exercice pratique : fetchWithRetry</h3>
+    <div class="instruction">
+      Créez une fonction <code>fetchWithRetry(url, options, maxRetries)</code> qui gère les erreurs 5xx et attend 1 seconde entre chaque tentative.
+    </div>
     
-    <div class="correction-block">
-      <h4>Script fetchWithRetry :</h4>
-      <pre>async function fetchWithRetry(url, options, maxRetries) {
+    <pre>
+async function fetchWithRetry(url, options, maxRetries) {
   for (let i = 0; i <= maxRetries; i++) {
     try {
       const response = await fetch(url, options);
-      if (response.status >= 500) throw new Error("Erreur Serveur");
-      return await response.json();
+      
+      // Si c'est une erreur serveur (500, 502, 503, 504)
+      if (response.status >= 500 && response.status < 600) {
+        throw new Error(`Erreur serveur : ${response.status}`);
+      }
+      
+      return response; // Retourne la réponse si succès (2xx) ou erreur client (4xx)
+
     } catch (err) {
-      if (i === maxRetries) throw err;
-      console.log(`Tentative ${i+1} échouée. Retry...`);
+      const isLastAttempt = i === maxRetries;
+      if (isLastAttempt) {
+        console.error("Nombre maximal de tentatives atteint.");
+        throw err;
+      }
+      
+      console.warn(`Tentative ${i + 1} échouée (${err.message}). Nouvel essai dans 1s...`);
+      // Attendre 1000ms avant la prochaine itération
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
-}</pre>
-    </div>
+}
 
-    <h2>TP 4 : Analyse des Headers de Sécurité</h2>
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead class="thead-light">
-          <tr><th>Header</th><th>Utilité</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>Strict-Transport-Security</code></td><td>Force la connexion en HTTPS.</td></tr>
-          <tr><td><code>X-Frame-Options</code></td><td>Empêche l'affichage du site dans une iframe (anti-clickjacking).</td></tr>
-          <tr><td><code>Content-Security-Policy</code></td><td>Définit les sources de scripts autorisées pour éviter le XSS.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h2>Exercices Récapitulatifs - Questions Théoriques</h2>
-    <div class="correction-block">
-      <ol>
-        <li><strong>Différence no-cache vs no-store :</strong> <code>no-store</code> interdit tout stockage. <code>no-cache</code> autorise le stockage mais force la validation auprès du serveur avant usage.</li>
-        <li><strong>Idempotence du POST :</strong> POST n'est pas idempotent car répéter la requête crée généralement plusieurs ressources (ex: deux commandes validées).</li>
-        <li><strong>Code 301 :</strong> Indique une redirection permanente. Le navigateur mémorise la nouvelle URL.</li>
-        <li><strong>Header Origin :</strong> Indique au serveur d'où provient la requête pour gérer les politiques CORS.</li>
-        <li><strong>HttpOnly :</strong> Empêche JavaScript d'accéder aux cookies, protégeant ainsi contre le vol de session via XSS.</li>
-      </ol>
-    </div>
+// Exemple d'utilisation :
+// fetchWithRetry('https://httpbin.org/status/500', { method: 'GET' }, 3);</pre>
 
   </div>
 </body>
