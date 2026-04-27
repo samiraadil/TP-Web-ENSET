@@ -3,58 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TP Final : Protocole HTTP - Samira</title>
+  <title>TP Final : Le Protocole HTTP - Samira</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f9; color: #333; line-height: 1.6; }
-    .container { background: white; padding: 40px; margin-top: 30px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    h1 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; }
-    h2 { color: #2c3e50; margin-top: 30px; border-left: 5px solid #0056b3; padding-left: 15px; }
-    h3 { color: #16a085; margin-top: 20px; }
-    .instruction { background-color: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 15px; }
-    .answer { background-color: #e8f4fd; border-left: 5px solid #2980b9; padding: 15px; margin: 15px 0; font-style: italic; }
-    code { background-color: #2d2d2d; color: #f8f8f2; padding: 2px 5px; border-radius: 4px; }
-    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
-    .badge-status { font-weight: bold; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f9; color: #333; padding-bottom: 50px; }
+    .container { background: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    h1 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; margin-bottom: 30px; }
+    h2 { color: #2c3e50; margin-top: 40px; border-left: 5px solid #0056b3; padding-left: 15px; background: #f8f9fa; }
+    h3 { color: #16a085; margin-top: 25px; font-size: 1.4rem; }
+    .instruction { background-color: #ffffff; border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; margin-top: 10px; border-left: 3px solid #6c757d; }
+    .answer { background-color: #e8f4fd; border-left: 5px solid #2980b9; padding: 15px; margin: 15px 0; border-radius: 0 5px 5px 0; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; margin-top: 10px; }
+    code { color: #e83e8c; font-weight: bold; }
+    #response-area { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; min-height: 100px; white-space: pre-wrap; font-family: monospace; }
+    .header-key { color: #9cdcfe; }
+    .header-val { color: #ce9178; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>TP : Le Protocole HTTP - Énoncé & Corrigé</h1>
+    <h1>TP : Protocole HTTP - Support Complet (Énoncé & Corrigé)</h1>
 
     <h2>TP 1 : Exploration avec les DevTools</h2>
     
     <h3>1.1 Ouvrir les DevTools</h3>
     <div class="instruction">
-      <ol>
-        <li>Ouvrez Chrome ou Firefox</li>
-        <li>Appuyez sur <strong>F12</strong> ou <strong>Ctrl+Shift+I</strong></li>
-        <li>Allez dans l'onglet <strong>Network</strong> (Réseau)</li>
-      </ol>
+      <p>1. Ouvrez Chrome ou Firefox. 2. Appuyez sur <strong>F12</strong>. 3. Allez dans l'onglet <strong>Network</strong>.</p>
     </div>
 
     <h3>1.2 Observer une requête simple</h3>
     <div class="instruction">
-      <ul>
-        <li>Cochez "Preserve log" pour garder l'historique</li>
-        <li>Naviguez vers <code>https://httpbin.org/get</code></li>
-        <li>Cliquez sur la requête dans la liste</li>
-      </ul>
-      <p><strong>Questions :</strong> Quel est le code de statut ? Quels headers de requête sont envoyés ? Quel est le Content-Type de la réponse ?</p>
+      <p>Naviguez vers <code>https://httpbin.org/get</code> et observez la requête.</p>
     </div>
-
     <div class="answer">
-      <strong>Réponses :</strong>
-      <ul>
-        <li><strong>Code de statut :</strong> <code>200 OK</code> (Indique que la requête a réussi).</li>
-        <li><strong>Headers de requête :</strong> On y trouve <code>User-Agent</code>, <code>Accept</code>, <code>Host</code>, et <code>Accept-Encoding</code>.</li>
-        <li><strong>Content-Type :</strong> <code>application/json</code> (Le serveur renvoie des données au format JSON).</li>
-      </ul>
+      <strong>Réponses aux questions :</strong><br>
+      • <strong>Code de statut :</strong> <code>200 OK</code>.<br>
+      • <strong>Headers de requête :</strong> <code>User-Agent</code>, <code>Host</code>, <code>Accept</code>.<br>
+      • <strong>Content-Type :</strong> <code>application/json</code>.
     </div>
 
     <h2>TP 2 : Maîtrise de cURL</h2>
     
-    <h3>2.1 Requête GET simple</h3>
+    <h3>2.1 Requêtes de base</h3>
     <pre>
 # Requête basique
 curl https://httpbin.org/get
@@ -62,22 +52,15 @@ curl https://httpbin.org/get
 # Avec headers de réponse
 curl -i https://httpbin.org/get
 
-# Mode verbose (debug)
+# Mode verbose (complet)
 curl -v https://httpbin.org/get</pre>
 
-    <div class="instruction">
-      <strong>Question :</strong> Quelle est la différence entre <code>-i</code> et <code>-v</code> ?
-    </div>
     <div class="answer">
-      <strong>Réponse :</strong> 
-      L'option <code>-i</code> affiche uniquement les <strong>headers de la réponse</strong> avant le contenu. 
-      L'option <code>-v</code> (verbose) est un mode de debug qui affiche <strong>tout l'échange</strong> : la connexion IP, les headers que tu envoies (marqués par <code>></code>) et ceux que tu reçois (marqués par <code><</code>).
+      <strong>Différence entre -i et -v :</strong><br>
+      <code>-i</code> affiche uniquement les headers de la réponse. <code>-v</code> affiche tout le processus (handshake, headers envoyés et reçus).
     </div>
 
-    <h3>Exercice avancé : Requête POST</h3>
-    <div class="instruction">
-      Écrivez une commande cURL qui envoie une requête POST à <code>https://httpbin.org/post</code> avec des headers spécifiques et un corps JSON.
-    </div>
+    <h3>Exercice avancé : Requête POST complexe</h3>
     <pre>
 curl -i -X POST \
      -H "Content-Type: application/json" \
@@ -85,43 +68,92 @@ curl -i -X POST \
      -d '{"action": "test", "value": 42}' \
      https://httpbin.org/post</pre>
 
-    <h2>TP 3 : API REST avec JavaScript</h2>
-
-    <h3>Exercice pratique : fetchWithRetry</h3>
-    <div class="instruction">
-      Créez une fonction <code>fetchWithRetry(url, options, maxRetries)</code> qui gère les erreurs 5xx et attend 1 seconde entre chaque tentative.
-    </div>
+    <h2>TP 3 : API REST & JavaScript</h2>
     
+    <h3>Exercice pratique : fetchWithRetry</h3>
     <pre>
 async function fetchWithRetry(url, options, maxRetries) {
   for (let i = 0; i <= maxRetries; i++) {
     try {
       const response = await fetch(url, options);
-      
-      // Si c'est une erreur serveur (500, 502, 503, 504)
-      if (response.status >= 500 && response.status < 600) {
-        throw new Error(`Erreur serveur : ${response.status}`);
-      }
-      
-      return response; // Retourne la réponse si succès (2xx) ou erreur client (4xx)
-
+      if (response.status >= 500) throw new Error(`Erreur ${response.status}`);
+      return response;
     } catch (err) {
-      const isLastAttempt = i === maxRetries;
-      if (isLastAttempt) {
-        console.error("Nombre maximal de tentatives atteint.");
-        throw err;
-      }
-      
-      console.warn(`Tentative ${i + 1} échouée (${err.message}). Nouvel essai dans 1s...`);
-      // Attendre 1000ms avant la prochaine itération
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      if (i === maxRetries) throw err;
+      console.warn(`Tentative ${i+1} échouée. Nouvel essai dans 1s...`);
+      await new Promise(res => setTimeout(res, 1000));
     }
   }
-}
+}</pre>
 
-// Exemple d'utilisation :
-// fetchWithRetry('https://httpbin.org/status/500', { method: 'GET' }, 3);</pre>
+    <h2>TP 5 : Stratégies de Cache HTTP</h2>
+    <div class="instruction">
+      <p>Configuration des headers pour une page contenant une image, un CSS et un JS :</p>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered mt-2">
+        <thead class="thead-light">
+          <tr><th>Fichier</th><th>Header suggéré</th><th>Raison</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>logo.png</code></td><td><code>max-age=31536000</code></td><td>Immuable (1 an)</td></tr>
+          <tr><td><code>style.css</code></td><td><code>no-cache</code></td><td>Validation ETag requise</td></tr>
+          <tr><td><code>app.js</code></td><td><code>max-age=86400</code></td><td>Mise à jour quotidienne</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Exercice Final : Client HTTP Minimaliste</h2>
+    <div class="p-3 border rounded mb-4">
+      <form id="http-form">
+        <div class="form-group">
+          <label>URL :</label>
+          <input type="url" id="url" class="form-control" value="https://httpbin.org/get">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Méthode :</label>
+            <select id="method" class="form-control">
+              <option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Body (JSON) :</label>
+          <textarea id="body" class="form-control" rows="2">{"test": true}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer la requête</button>
+      </form>
+
+      <h3 class="mt-4">Résultat :</h3>
+      <div id="response-area">La réponse s'affichera ici...</div>
+    </div>
 
   </div>
+
+  <script>
+    document.getElementById('http-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const area = document.getElementById('response-area');
+      area.textContent = "Chargement...";
+      
+      const options = { 
+        method: document.getElementById('method').value,
+        headers: { 'Content-Type': 'application/json' }
+      };
+      if (options.method !== 'GET') options.body = document.getElementById('body').value;
+
+      try {
+        const res = await fetch(document.getElementById('url').value, options);
+        const data = await res.json();
+        let headersStr = "";
+        res.headers.forEach((v, k) => headersStr += `${k}: ${v}\n`);
+        
+        area.innerHTML = `<strong>Statut:</strong> ${res.status}\n\n<strong>Headers:</strong>\n${headersStr}\n<strong>Body:</strong>\n${JSON.stringify(data, null, 2)}`;
+      } catch (err) {
+        area.textContent = "Erreur: " + err.message;
+      }
+    });
+  </script>
 </body>
 </html>
