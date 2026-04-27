@@ -2,95 +2,57 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet_final | E-Commerce</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Mon Site Web</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
+<body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">TechStore</a>
-            <button class="btn btn-primary position-relative" data-bs-toggle="modal" data-bs-target="#modalPanier">
-                🛒 Mon Panier
-                <span id="panier-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    0
-                </span>
-            </button>
-        </div>
+<header>
+    <h1>Bienvenue sur mon site</h1>
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
+</header>
 
-    <header class="py-5 text-center bg-white border-bottom shadow-sm mb-5">
-        <h1 class="display-4 fw-bold">Catalogue Produits</h1>
-        <p class="text-muted">Projet TP Technologies Web</p>
-    </header>
+<section id="accueil">
+    <h2>Accueil</h2>
+    <p>Ceci est ma première page web réalisée en HTML et CSS.</p>
+    <img src="https://via.placeholder.com/300" alt="image">
+</section>
 
-    <main class="container">
-        <div class="row g-4" id="liste-produits">
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <img src="https://picsum.photos/id/1/300/200" class="card-img-top" alt="Laptop">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Ordinateur Ultra Portable</h5>
-                        <p class="text-primary fw-bold">950 €</p>
-                        <button class="btn btn-outline-primary btn-ajouter" data-id="1" data-nom="Laptop Ultra" data-prix="950">
-                            Ajouter au panier
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <img src="https://picsum.photos/id/20/300/200" class="card-img-top" alt="Clavier">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Clavier Mécanique QWERTZ</h5>
-                        <p class="text-primary fw-bold">120 €</p>
-                        <button class="btn btn-outline-primary btn-ajouter" data-id="2" data-nom="Clavier QWERTZ" data-prix="120">
-                            Ajouter au panier
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <img src="https://picsum.photos/id/48/300/200" class="card-img-top" alt="Ecran">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Écran 4K Gaming</h5>
-                        <p class="text-primary fw-bold">350 €</p>
-                        <button class="btn btn-outline-primary btn-ajouter" data-id="3" data-nom="Ecran 4K" data-prix="350">
-                            Ajouter au panier
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+<section id="apropos">
+    <h2>À propos</h2>
+    <p>Je suis étudiante en développement web.</p>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+</section>
 
-    <div class="modal fade" id="modalPanier" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Votre Panier</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <ul id="panier-items" class="list-group mb-3">
-                        </ul>
-                    <div class="d-flex justify-content-between fw-bold border-top pt-2">
-                        <span>Total :</span>
-                        <span id="total-prix">0 €</span>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="viderPanier()">Vider</button>
-                    <button type="button" class="btn btn-success">Valider la commande</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<section id="contact">
+    <h2>Contact</h2>
+    <form>
+        <label>Nom :</label>
+        <input type="text" name="nom"><br>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+        <label>Email :</label>
+        <input type="email" name="email"><br>
+
+        <label>Message :</label><br>
+        <textarea></textarea><br>
+
+        <button type="submit">Envoyer</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 Mon Site Web</p>
+</footer>
+
 </body>
 </html>
