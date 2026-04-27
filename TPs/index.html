@@ -12,12 +12,10 @@
     h2 { color: #2c3e50; margin-top: 40px; border-left: 5px solid #0056b3; padding-left: 15px; background: #f8f9fa; padding-top: 5px; padding-bottom: 5px; }
     h3 { color: #16a085; margin-top: 25px; font-size: 1.4rem; }
     .instruction { background-color: #ffffff; border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; margin-top: 10px; border-left: 3px solid #6c757d; }
-    .answer { background-color: #e8f4fd; border-left: 5px solid #2980b9; padding: 15px; margin: 15px 0; border-radius: 0 5px 5px 0; }
     pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; margin-top: 10px; }
-    code { color: #e83e8c; font-weight: bold; }
     #response-area, #retry-log { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; min-height: 50px; white-space: pre-wrap; font-family: monospace; margin-top: 10px; }
     #retry-log { color: #ffca28; border: 1px solid #333; margin-bottom: 10px; }
-    .table-status { background-color: #f1f8ff; }
+    .table thead th { background-color: #343a40; color: white; }
   </style>
 </head>
 <body>
@@ -26,47 +24,94 @@
 
     <h2>TP 1 : Exploration avec les DevTools</h2>
     <div class="instruction">
-      <p>Analyse des requêtes effectuées sur httpbin.org :</p>
+      <p><strong>Exercice :</strong> Remplissez le tableau après analyse dans l'onglet Network.</p>
     </div>
     <div class="table-responsive">
-      <table class="table table-bordered table-status mt-2">
-        <thead class="thead-dark">
-          <tr><th>URL</th><th>Méthode</th><th>Code</th><th>Content-Type</th></tr>
+      <table class="table table-bordered mt-2">
+        <thead>
+          <tr>
+            <th>URL</th>
+            <th>Méthode</th>
+            <th>Code</th>
+            <th>Content-Type</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td>httpbin.org/get</td><td>GET</td><td>200 OK</td><td>application/json</td></tr>
-          <tr><td>httpbin.org/post</td><td>POST</td><td>200 OK</td><td>application/json</td></tr>
-          <tr><td>httpbin.org/status/201</td><td>GET</td><td>201 Created</td><td>text/plain</td></tr>
+          <tr>
+            <td>httpbin.org/get</td>
+            <td>GET</td>
+            <td>200 OK</td>
+            <td>application/json</td>
+          </tr>
+          <tr>
+            <td>httpbin.org/post</td>
+            <td>POST</td>
+            <td>200 OK</td>
+            <td>application/json</td>
+          </tr>
+          <tr>
+            <td>httpbin.org/status/201</td>
+            <td>GET</td>
+            <td>201 Created</td>
+            <td>text/plain</td>
+          </tr>
         </tbody>
       </table>
     </div>
 
     <h2>TP 2 : Maîtrise de cURL</h2>
-    <pre># Voir uniquement les headers de réponse (-i)
+    <pre># Voir uniquement les headers de réponse
 curl -i https://httpbin.org/get
 
-# Mode verbeux complet (-v)
+# Mode verbeux complet
 curl -v https://httpbin.org/get</pre>
 
     <h2>TP 3 : API REST & JavaScript (Retry)</h2>
     <div class="instruction">
-      <p>Simulez une erreur serveur (500) pour tester la logique de tentative automatique :</p>
+      <p><strong>Exercice pratique :</strong> Fonction <code>fetchWithRetry</code> avec attente de 1s.</p>
     </div>
     <div class="p-3 border rounded bg-light">
-        <button class="btn btn-warning" onclick="testRetry()">Lancer fetchWithRetry (3 essais)</button>
+        <button class="btn btn-warning" onclick="testRetry()">Lancer le test de Retry (Erreur 500)</button>
         <div id="retry-log">Logs de connexion...</div>
     </div>
 
     <h2>TP 4 : Analyse de Sécurité (Headers)</h2>
+    <div class="instruction">
+      <p><strong>Exercice :</strong> Analyse des headers de sécurité de 3 sites.</p>
+    </div>
     <div class="table-responsive">
       <table class="table table-bordered mt-2 text-center">
-        <thead class="thead-dark">
-          <tr><th>Site</th><th>HSTS</th><th>X-Frame-Options</th><th>CSP</th><th>Note</th></tr>
+        <thead>
+          <tr>
+            <th>Site</th>
+            <th>HSTS</th>
+            <th>X-Frame-Options</th>
+            <th>CSP</th>
+            <th>Note</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td><strong>github.com</strong></td><td>✅ Oui</td><td>DENY</td><td>Strict</td><td>A+</td></tr>
-          <tr><td><strong>google.com</strong></td><td>✅ Oui</td><td>SAMEORIGIN</td><td>Présent</td><td>A</td></tr>
-          <tr><td><strong>wikipedia.org</strong></td><td>✅ Oui</td><td>DENY</td><td>Présent</td><td>A</td></tr>
+          <tr>
+            <td><strong>github.com</strong></td>
+            <td>✅ Oui</td>
+            <td>DENY</td>
+            <td>Strict</td>
+            <td>A+</td>
+          </tr>
+          <tr>
+            <td><strong>google.com</strong></td>
+            <td>✅ Oui</td>
+            <td>SAMEORIGIN</td>
+            <td>Présent</td>
+            <td>A</td>
+          </tr>
+          <tr>
+            <td><strong>wikipedia.org</strong></td>
+            <td>✅ Oui</td>
+            <td>DENY</td>
+            <td>Présent</td>
+            <td>A</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -74,12 +119,16 @@ curl -v https://httpbin.org/get</pre>
     <h2>TP 5 : Stratégies de Cache</h2>
     <div class="table-responsive">
       <table class="table table-sm table-bordered">
-        <thead class="thead-light">
-          <tr><th>Fichier</th><th>Header suggéré</th><th>Raison</th></tr>
+        <thead>
+          <tr>
+            <th>Fichier</th>
+            <th>Header suggéré</th>
+            <th>Raison</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td><code>logo.png</code></td><td><code>max-age=31536000</code></td><td>Cache long (1 an) pour images</td></tr>
-          <tr><td><code>style.css</code></td><td><code>no-cache</code></td><td>Doit vérifier si modif (ETag)</td></tr>
+          <tr><td><code>logo.png</code></td><td><code>max-age=31536000</code></td><td>Image statique (1 an)</td></tr>
+          <tr><td><code>style.css</code></td><td><code>no-cache</code></td><td>Doit vérifier les modifs (ETag)</td></tr>
           <tr><td><code>app.js</code></td><td><code>max-age=86400</code></td><td>Mise à jour journalière</td></tr>
         </tbody>
       </table>
@@ -92,23 +141,21 @@ curl -v https://httpbin.org/get</pre>
           <label>URL :</label>
           <input type="url" id="url" class="form-control" value="https://httpbin.org/get">
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label>Méthode :</label>
-            <select id="method" class="form-control">
-              <option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option>
-            </select>
-          </div>
+        <div class="form-group">
+          <label>Méthode :</label>
+          <select id="method" class="form-control">
+            <option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Exécuter la requête</button>
       </form>
       <h3 class="mt-4">Réponse du serveur :</h3>
-      <div id="response-area">En attente...</div>
+      <div id="response-area">En attente de la requête...</div>
     </div>
   </div>
 
   <script>
-    // --- LOGIQUE TP 3 : FETCH WITH RETRY ---
+    // LOGIQUE TP 3 : FETCH WITH RETRY
     async function fetchWithRetry(url, options, maxRetries) {
       const logArea = document.getElementById('retry-log');
       logArea.textContent = ""; 
@@ -128,7 +175,7 @@ curl -v https://httpbin.org/get</pre>
             logArea.textContent += `\nÉchec définitif : ${err.message}`;
             throw err;
           }
-          logArea.textContent += `Erreur serveur détectée. Nouvel essai dans 1s...\n`;
+          logArea.textContent += `Erreur serveur. Nouvel essai dans 1s...\n`;
           await new Promise(res => setTimeout(res, 1000));
         }
       }
@@ -137,27 +184,22 @@ curl -v https://httpbin.org/get</pre>
     async function testRetry() {
         try {
             await fetchWithRetry('https://httpbin.org/status/500', { method: 'GET' }, 3);
-        } catch(e) {
-            console.log("Fin du test retry.");
-        }
+        } catch(e) { }
     }
 
-    // --- LOGIQUE CLIENT HTTP ---
+    // LOGIQUE CLIENT HTTP FINAL
     document.getElementById('http-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const area = document.getElementById('response-area');
-      area.textContent = "Chargement en cours...";
-      
+      area.textContent = "Chargement...";
       const method = document.getElementById('method').value;
       const url = document.getElementById('url').value;
       
       try {
         const res = await fetch(url, { method: method });
         const data = await res.json();
-        
         let headersStr = "";
         res.headers.forEach((v, k) => headersStr += `${k}: ${v}\n`);
-        
         area.innerHTML = `<strong>Statut :</strong> ${res.status}\n\n<strong>Headers :</strong>\n${headersStr}\n<strong>Body :</strong>\n${JSON.stringify(data, null, 2)}`;
       } catch (err) {
         area.textContent = "Erreur : " + err.message;
