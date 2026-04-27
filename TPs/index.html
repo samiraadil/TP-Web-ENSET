@@ -6,21 +6,20 @@
   <title>TP Final : Le Protocole HTTP - Samira</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f9; color: #333; padding-bottom: 50px; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f9; padding-bottom: 50px; }
     .container { background: white; padding: 40px; margin-top: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    h1 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; margin-bottom: 30px; }
-    h2 { color: #2c3e50; margin-top: 40px; border-left: 5px solid #0056b3; padding-left: 15px; background: #f8f9fa; padding: 10px; }
-    .instruction { background-color: #ffffff; border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; margin-top: 10px; border-left: 3px solid #6c757d; }
-    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    h1 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; }
+    h2 { color: #2c3e50; margin-top: 40px; background: #f8f9fa; padding: 10px; border-left: 5px solid #0056b3; }
     .table thead th { background-color: #343a40; color: white; text-align: center; }
-    #response-area, #retry-log { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 5px; min-height: 50px; white-space: pre-wrap; font-family: monospace; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; }
+    #retry-log { background: #1e1e1e; color: #ffca28; padding: 15px; border-radius: 5px; font-family: monospace; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>TP : Protocole HTTP - Samira</h1>
+    <h1>TP : Protocole HTTP - Samira Adil</h1>
 
-    <h2>TP 1 : Exploration (httpbin)</h2>
+    <h2>TP 1 : Exploration (Tableau Exercice)</h2>
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
@@ -54,15 +53,10 @@
       </table>
     </div>
 
-    <h2>TP 2 : Commandes cURL</h2>
-    <pre>curl -i https://httpbin.org/get  # Affiche les headers
-curl -v https://httpbin.org/get  # Mode verbeux complet</pre>
-
-    <h2>TP 3 : fetchWithRetry</h2>
-    <div class="p-3 border rounded bg-light mb-3">
-        <button class="btn btn-warning" onclick="testRetry()">Tester le Retry (3 tentatives)</button>
-        <div id="retry-log" class="mt-2">En attente de test...</div>
-    </div>
+    <h2>TP 3 : Exercice fetchWithRetry</h2>
+    <p>Cette fonction réessaie la requête 3 fois en cas d'erreur 500 avec 1s d'intervalle.</p>
+    <button class="btn btn-warning mb-3" onclick="runRetryTest()">Lancer le test de Retry</button>
+    <div id="retry-log">Logs de tentatives...</div>
 
     <h2>TP 4 : Analyse de Sécurité (Headers)</h2>
     <div class="table-responsive">
@@ -79,21 +73,21 @@ curl -v https://httpbin.org/get  # Mode verbeux complet</pre>
         <tbody>
           <tr>
             <td><strong>github.com</strong></td>
-            <td>✅ Oui</td>
+            <td>✅ Activé</td>
             <td>DENY</td>
             <td>Strict</td>
             <td>A+</td>
           </tr>
           <tr>
             <td><strong>google.com</strong></td>
-            <td>✅ Oui</td>
+            <td>✅ Activé</td>
             <td>SAMEORIGIN</td>
             <td>Présent</td>
             <td>A</td>
           </tr>
           <tr>
             <td><strong>facebook.com</strong></td>
-            <td>✅ Oui</td>
+            <td>✅ Activé</td>
             <td>DENY</td>
             <td>Très Strict</td>
             <td>A+</td>
@@ -102,61 +96,45 @@ curl -v https://httpbin.org/get  # Mode verbeux complet</pre>
       </table>
     </div>
 
-    <h2>TP 5 : Configuration du Cache</h2>
+    <h2>TP 5 : Headers de Cache</h2>
     <table class="table table-bordered">
       <thead class="thead-light">
-        <tr><th>Type de fichier</th><th>Header Cache-Control</th><th>Raison</th></tr>
+        <tr><th>Fichier</th><th>Header suggéré</th><th>Raison</th></tr>
       </thead>
       <tbody>
-        <tr><td>Image (logo.png)</td><td><code>public, max-age=31536000</code></td><td>Fichier immuable (1 an)</td></tr>
-        <tr><td>CSS (style.css)</td><td><code>no-cache</code></td><td>Doit vérifier si changement (ETag)</td></tr>
-        <tr><td>JS (app.js)</td><td><code>public, max-age=86400</code></td><td>Cache de 24h</td></tr>
+        <tr><td>Image</td><td><code>max-age=31536000</code></td><td>Fichier statique (1 an)</td></tr>
+        <tr><td>CSS</td><td><code>no-cache</code></td><td>Doit vérifier les modifs (ETag)</td></tr>
+        <tr><td>JS</td><td><code>max-age=86400</code></td><td>Mise à jour journalière</td></tr>
       </tbody>
     </table>
-
-    <h2>Exercice Final : Client HTTP</h2>
-    <form id="http-form" class="bg-light p-3 border rounded">
-      <input type="url" id="url" class="form-control mb-2" value="https://httpbin.org/get">
-      <select id="method" class="form-control mb-2">
-        <option>GET</option><option>POST</option>
-      </select>
-      <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
-    </form>
-    <div id="response-area" class="mt-3">La réponse apparaîtra ici...</div>
   </div>
 
   <script>
-    // Logique Retry
+    // FONCTION RETRY
     async function fetchWithRetry(url, options, maxRetries) {
       const log = document.getElementById('retry-log');
       log.textContent = "";
       for (let i = 0; i <= maxRetries; i++) {
         try {
-          log.textContent += `Essai ${i}... `;
+          log.textContent += `Essai n°${i}... `;
           const res = await fetch(url, options);
-          if (res.status >= 500) throw new Error(res.status);
+          if (res.status >= 500) throw new Error(`Erreur ${res.status}`);
           log.textContent += "Succès !";
           return res;
         } catch (e) {
-          if (i === maxRetries) { log.textContent += "\nÉchec final."; throw e; }
-          log.textContent += `Erreur ${e.message}. Attente 1s...\n`;
+          if (i === maxRetries) {
+            log.textContent += `\nÉchec final après ${maxRetries} tentatives.`;
+            throw e;
+          }
+          log.textContent += `Serveur HS. Nouvelle tentative dans 1s...\n`;
           await new Promise(r => setTimeout(r, 1000));
         }
       }
     }
-    function testRetry() { fetchWithRetry('https://httpbin.org/status/500', {}, 3).catch(e=>{}); }
 
-    // Logique Formulaire
-    document.getElementById('http-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const area = document.getElementById('response-area');
-      area.textContent = "Chargement...";
-      try {
-        const res = await fetch(document.getElementById('url').value, { method: document.getElementById('method').value });
-        const data = await res.json();
-        area.textContent = JSON.stringify(data, null, 2);
-      } catch (err) { area.textContent = "Erreur: " + err.message; }
-    });
+    function runRetryTest() {
+      fetchWithRetry('https://httpbin.org/status/500', {}, 3).catch(() => {});
+    }
   </script>
 </body>
 </html>
